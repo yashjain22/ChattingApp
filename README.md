@@ -1,2 +1,2 @@
 # ChattingApp
-for installing dependencies use pip install -r reuirements.txt
+for installing dependencies use pip install -r requirements.txt
