@@ -10,7 +10,7 @@ app.config['SECRET_KEY'] = 'somethingsecret'
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = ''
-app.config['MYSQL_DB'] = 'test'
+app.config['MYSQL_DB'] = 'chat_app'
 app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 database=DatabaseManager()
 mysql = MySQL(app)
@@ -96,9 +96,14 @@ def server_login():
         session['user'] = result[0]
     return redirect('/')
 
-@app.route('/server/register', methods=['POST'])
+@app.route('/server/register', methods=['GET','POST'])
 def server_register():
-    user = request.form['register']
+    user = {}
+    user['username'] = request.form['username']
+    user['password'] = request.form['password']
+    user['first_name'] = request.form['first_name']
+    user['last_name'] = request.form['last_name']
+    #print(user)
     database.register(mysql, user)
     return redirect('/')
 
